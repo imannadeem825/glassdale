@@ -1,18 +1,51 @@
-import { getCriminals, useCriminals } from './criminals/CriminalProvider.js'
+import { getCriminals, useCriminals } from './CriminalProvider.js'
 import { Criminal } from "./Criminal.js"
+import { useConvictions } from "../convictions/ConvictionProvider.js"
+
+const criminalElement = document.querySelector(".criminalsContainer")
+const eventHub = document.querySelector(".container")
+
+
+
+
+
+// Listen for the custom event you dispatched in ConvictionSelect
+eventHub.addEventListener("crimeChosen", event => {
+    // Use the property you added to the event detail.
+    if (event.detail.crimeThatWasChosen !== "0"){
+        /*
+            Filter the criminals application state down to the people that committed the crime
+        */
+        console.log("crime", event.detail)
+        const crimes = useConvictions()
+        const crime = crimes.find( (crime) => crime.id === parseInt(event.detail.crimeThatWasChosen))
+
+        const criminals = useCriminals()
+        const matchingCriminals = criminals.filter( (criminal) => 
+            criminal.conviction === crime.name
+        )
+        
+       render(matchingCriminals)
+    }
+})
 
 export const CriminalList = () => {
-    getCriminals().then(() => {
-        const allTheCriminals = useCriminals()
-        const contentElement = document.querySelector(".criminalsContainer")
-        for (const criminalObject of allTheCriminals) {
-            const criminalHTML = Criminal(criminalObject)
-            contentElement.innerHTML += criminalHTML
-        }
-    }
-        /*
-            Now that you have the data, what
-            component should be rendered?
-        */
-    )
+    getCriminals()
+        .then(() => {
+            let perps = useCriminals()
+            render(perps)
+        })
 }
+
+// Render ALL criminals initally
+const render = (criminals) => {
+    let criminalCards = []
+    for (const perp of criminals) {
+        criminalCards.push(Criminal(perp))
+    }
+
+    criminalElement.innerHTML = criminalCards.join("")
+}
+
+
+
