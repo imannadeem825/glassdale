@@ -2,7 +2,7 @@ import { getCriminals, useCriminals } from './CriminalProvider.js'
 import { Criminal } from "./Criminal.js"
 import { useConvictions } from "../convictions/ConvictionProvider.js"
 
-const criminalElement = document.querySelector(".criminalsContainer")
+const contentTarget = document.querySelector(".criminalsContainer")
 const eventHub = document.querySelector(".container")
 
 
@@ -37,15 +37,33 @@ export const CriminalList = () => {
         })
 }
 
-// Render ALL criminals initally
 const render = (criminals) => {
     let criminalCards = []
+    
     for (const perp of criminals) {
         criminalCards.push(Criminal(perp))
     }
 
-    criminalElement.innerHTML = criminalCards.join("")
+    contentTarget.innerHTML = criminalCards.join("")
 }
 
 
+
+eventHub.addEventListener("officerSelected", event => {
+    // How can you access the officer name that was selected by the user?
+    const officerName = event.detail.officer
+
+    // How can you get the criminals that were arrested by that officer?
+    const criminals = useCriminals()
+    const choosingCriminalsByOfficer =
+    criminals.filter(
+        criminalObject => {
+            if (criminalObject.arrestingOfficer === officerName) {
+                return true
+            }
+        }
+    )
+    contentTarget.innerHTML = ""
+    render(choosingCriminalsByOfficer)
+})
 
