@@ -1,0 +1,111 @@
+{
+  "notes": [
+    {
+      "dateCreated": "12/7/20",
+      "author": "Iman",
+      "text": "He went that way, follow me!",
+      "suspect": "The Boat",
+      "id": 1
+    },
+    {
+      "author": "it me",
+      "text": "texttexttext",
+      "suspect": "hashslingingslasher",
+      "dateCreated": 1607374096243,
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "author": "hi",
+      "text": "hi",
+      "suspect": "hi",
+      "dateCreated": 1607459658520,
+      "id": 6
+    },
+    {
+      "author": "yo",
+      "text": "yo",
+      "suspect": "yo",
+      "dateCreated": 1607462320271,
+      "id": 7
+    },
+    {
+      "author": "sup",
+      "text": "my",
+      "suspect": "dude",
+      "dateCreated": 1607526487413,
+      "id": 8
+    },
+    {
+      "author": "hope",
+      "text": "this ",
+      "suspect": "works",
+      "dateCreated": 1607526788395,
+      "id": 9
+    },
+    {
+      "author": "please",
+      "text": "dear",
+      "suspect": "god",
+      "dateCreated": 1607526851805,
+      "id": 10
+    },
+    {
+      "author": "",
+      "text": "",
+      "suspect": "",
+      "dateCreated": 1607526880222,
+      "id": 11
+    },
+    {
+      "author": "?",
+      "text": "??",
+      "suspect": "???",
+      "dateCreated": 1607526929754,
+      "id": 12
+    },
+    {
+      "author": "why",
+      "text": "why",
+      "suspect": "why",
+      "dateCreated": 1607527022684,
+      "id": 13
+    },
+    {
+      "author": "why",
+      "text": "why",
+      "suspect": "why",
+      "dateCreated": 1607527331687,
+      "id": 14
+    },
+    {
+      "author": "this",
+      "text": "works ",
+      "suspect": "now",
+      "dateCreated": 1607529944183,
+      "id": 15
+    },
+    {
+      "author": "now",
+      "text": "things",
+      "suspect": "work!",
+      "dateCreated": 1607530233083,
+      "id": 16
+    },
+    {
+      "author": "now",
+      "text": "things",
+      "suspect": "work! again!",
+      "dateCreated": 1607530258695,
+      "id": 17
+    }
+  ]
+}

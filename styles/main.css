@@ -1,0 +1,25 @@
+.criminalsContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.criminal {
+    border: black solid 4px;
+    margin: 10px;
+    justify-content: space-around;
+    padding: 10px;
+    flex-basis: 25%;
+    text-align: center;
+}
+
+
+.noteListContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.note {
+    justify-content: space-around;
+}
