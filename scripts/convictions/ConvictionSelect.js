@@ -70,7 +70,7 @@ eventHub.addEventListener("change", event => {
 
 
 const render = convictionsCollection => {
-    contentTarget.innerHTML = `
+    return contentTarget.innerHTML = `
         <select class="dropdown" id="crimeSelect">
             <option value="0">Please select a crime...</option>
             ${

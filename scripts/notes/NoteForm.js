@@ -5,16 +5,31 @@
 // send data to be stored in the database, via the API
 
 import { saveNote } from "./NoteProvider.js"
+import { useCriminals, getCriminals } from "../criminals/CriminalProvider.js"
+
 const contentTarget = document.querySelector(".noteFormContainer")
 const eventHub = document.querySelector(".container")
 
 const render = () => {
+    const criminalsCollection = useCriminals()
     contentTarget.innerHTML = 
     `
-    <input type="text" id="author" placeholder="author name">
-    <textarea id="text" placeholder="note text"></textarea>
-    <input type="text" id="suspect" placeholder="suspect name">
+    <section class="noteForm">
+        <input type="text" id="author" placeholder="author name">
+        <textarea id="text" placeholder="note text"></textarea>
+        <select class="dropdown" id="suspect">
+            <option value="0">Please select a suspect...</option>
+            ${
+            criminalsCollection.map( (crime) =>
+                `<option value=${crime.id}>
+                ${crime.name}
+                </option>`
+                )
+            }
+    </select>
     <button id="saveNote">Save Note</button>
+    </section>
+
     `
 }
 
@@ -25,14 +40,14 @@ eventHub.addEventListener("click", clickEvent => {
         // need to gather data from the form
         const author = document.querySelector("#author").value
         const text = document.querySelector("#text").value
-        const suspect = document.querySelector("#suspect").value
+        const criminalId = document.querySelector("#suspect").value
 
         // Make a new object representation of a note
         const newNote = {
             // Key/value pairs here
             author: author,
             text: text,
-            suspect: suspect,
+            crimnalId: criminalId,
             dateCreated: Date.now()
         }
 
@@ -42,6 +57,8 @@ eventHub.addEventListener("click", clickEvent => {
     }
 })
 
+// DOM needs time for criminals to show up in dropdown, this allows for that
 export const NoteForm = () => {
-    render()
+    getCriminals()
+    .then( () => render())
 }

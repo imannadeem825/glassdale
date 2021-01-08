@@ -9,7 +9,7 @@ const dispatchStateChangeEvent = () => {
 
 // retrieving notes data, turning into json, putting into notes array
 export const getNotes = () => {
-    return fetch('http://localhost:8088/notes')
+    return fetch('http://localhost:8080/notes')
         .then(response => response.json())
         .then(parsedNotes => {
             notes = parsedNotes
@@ -17,10 +17,14 @@ export const getNotes = () => {
 
 }
 
-// 
+export const useNotes = () => {
+    return notes.slice()
+}
+
+
 export const saveNote = note => {
     let stringifiedObj = JSON.stringify(note)
-    return fetch('http://localhost:8088/notes', {
+    return fetch('http://localhost:8080/notes', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -31,6 +35,12 @@ export const saveNote = note => {
     .then(dispatchStateChangeEvent)
 }
 
-export const useNotes = () => {
-    return notes.slice()
+
+export const deleteNote = noteId => {
+    return fetch( `http://localhost:8080/notes/${noteId}`, {
+        method: DELETE
+    })
+    .then(getNotes)
+    .then(dispatchStateChangeEvent)
+    
 }

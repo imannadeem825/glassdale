@@ -1,10 +1,21 @@
 import { getCriminals, useCriminals } from './CriminalProvider.js'
 import { Criminal } from "./Criminal.js"
 import { useConvictions } from "../convictions/ConvictionProvider.js"
+import { useOfficers } from "../officers/OfficerProvider.js"
+import { AssociatesDialog } from "./AssociatesDisplay.js"
 
 const contentTarget = document.querySelector(".criminalsContainer")
 const eventHub = document.querySelector(".container")
 
+const render = (criminals) => {
+    let criminalCards = []
+    
+    for (const perp of criminals) {
+        criminalCards.push(Criminal(perp))
+    }
+    // contentTarget.innerHTML = criminalCards.join("")
+    contentTarget.innerHTML = `${criminalCards.join("")} ${AssociatesDialog()}`
+}
 
 
 
@@ -29,25 +40,6 @@ eventHub.addEventListener("crimeChosen", event => {
     }
 })
 
-export const CriminalList = () => {
-    getCriminals()
-        .then(() => {
-            let perps = useCriminals()
-            render(perps)
-        })
-}
-
-const render = (criminals) => {
-    let criminalCards = []
-    
-    for (const perp of criminals) {
-        criminalCards.push(Criminal(perp))
-    }
-
-    contentTarget.innerHTML = criminalCards.join("")
-}
-
-
 
 eventHub.addEventListener("officerSelected", event => {
     // How can you access the officer name that was selected by the user?
@@ -67,3 +59,12 @@ eventHub.addEventListener("officerSelected", event => {
     render(choosingCriminalsByOfficer)
 })
 
+
+
+export const CriminalList = () => {
+    getCriminals()
+        .then(() => {
+            let perps = useCriminals()
+            render(perps)
+        })
+}
